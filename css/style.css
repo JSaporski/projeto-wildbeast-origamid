@@ -51,6 +51,28 @@ img {
     "footer footer footer";
 }
 
+@media only screen and (max-width: 1200px) {
+  .grid-estrutura {
+    grid-template-columns: minmax(160px, 1fr) auto;
+    grid-template-areas:
+      "header header"
+      "sidenav conteudo"
+      "sidenav anuncios"
+      "footer footer";
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .grid-estrutura {
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "conteudo"
+      "anuncios"
+      "footer";
+  }
+}
+
 /* HEADER */
 
 header {
@@ -86,6 +108,21 @@ header {
   background: rgba(0, 0, 0, 0.4);
 }
 
+@media only screen and (max-width: 760px) {
+  header {
+    grid-template-columns: auto;
+    gap: 20px;
+  }
+
+  .menu-nav ul {
+    gap: 10px;
+  }
+
+  .menu-nav ul li a {
+    font-size: 1em;
+  }
+}
+
 /* SIDENAV */
 
 .sidenav {
@@ -110,10 +147,53 @@ header {
   background: #b07dfb;
 }
 
+@keyframes seta {
+  from {
+    right: 30px;
+  }
+
+  to {
+    right: 20px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .sidenav {
+    padding: 0 30px;
+    position: relative;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
+  .sidenav:after {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: seta 0.5s ease-in infinite alternate;
+  }
+
+  .sidenav ul {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .sidenav li {
+    flex: 1 0 130px;
+  }
+
+  .sidenav li a {
+    margin: 30px 30px 30px 0;
+  }
+}
+
 /* CONTEÚDO */
 
 .conteudo {
-  max-width: 900px;
+  max-width: 960px;
+  margin: 0 auto;
   padding: 30px;
   grid-area: conteudo;
   display: grid;
@@ -138,13 +218,13 @@ header {
 
 .caracteristicas {
   display: flex;
-  align-items: flex-start;
+  align-self: flex-start;
   gap: 30px;
 }
 
 .caracteristicas > div {
   width: 80px;
-  box-shadow: 5px 5px 15px 0px rgb(44 44 44 / 15%);
+  box-shadow: 5px 5px 15px 0px rgba(44 44 44 / 15%);
   background: linear-gradient(135deg, #8844ee, #b07dfb);
   border-radius: 5px;
   position: relative;
@@ -152,10 +232,6 @@ header {
 
 .caracteristicas span {
   display: block;
-}
-
-.col-wide {
-  grid-column: 1 / -1;
 }
 
 .numero {
@@ -177,9 +253,12 @@ header {
   top: 2px;
 }
 
+.col-wide {
+  grid-column: 1 / -1;
+}
+
 .lobo-1 {
   width: 100%;
-  grid-column: 1;
   grid-row: span 2;
   align-self: end;
 }
@@ -192,13 +271,14 @@ header {
 
 .lobo-2 {
   width: 100%;
+  align-self: end;
 }
 
 .citacao {
   border-radius: 5px;
-  padding: 30px 0;
+  padding: 30px;
   background: linear-gradient(135deg, #8844ee, #b07dfb);
-  box-shadow: 5px 5px 15px 0px rgb(44 44 44 / 15%);
+  box-shadow: 5px 5px 15px 0px rgba(44 44 44 / 15%);
   text-align: center;
 }
 
@@ -215,7 +295,7 @@ header {
   background: linear-gradient(135deg, #8844ee, #b07dfb);
   align-self: start;
   border-radius: 5px;
-  box-shadow: 5px 5px 15px 0 rgb(44 44 44 / 15%);
+  box-shadow: 5px 5px 15px 0 rgba(44 44 44 / 15%);
 }
 
 .atributos li {
@@ -229,9 +309,8 @@ header {
   border-top: solid 2px #af7bfb;
 }
 
-.sobre-lobo {
-  display: grid;
-  gap: 30px;
+.sobre-lobo p + p {
+  margin-top: 30px;
 }
 
 .lobo-3 {
@@ -249,6 +328,18 @@ header {
   gap: 30px;
 }
 
+@media only screen and (max-width: 600px) {
+  .conteudo {
+    grid-template-columns: auto;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .anuncios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* FOOTER */
 
 .footer {
@@ -257,7 +348,7 @@ header {
 }
 
 .footer p {
-  padding: 30px 0;
+  padding: 30px;
   text-align: center;
   color: #fff;
 }
